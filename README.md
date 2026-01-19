@@ -247,6 +247,22 @@ mcp dev server.py
 
 Then open http://localhost:5173 and test tools via the UI.
 
+## Use Make or Just (optional)
+
+If you prefer shortcuts, you can use either `make` or `just`:
+
+```bash
+# Makefile
+make install
+make run-dev
+make test
+
+# justfile
+just install
+just run-dev
+just test
+```
+
 ## Step-by-step setup (uv, optional)
 
 If `uv` works on your machine, you can use it for setup.
@@ -261,6 +277,34 @@ uv add "mcp[cli]" httpx
 ```
 
 Then create `server.py` and `test_tools.py` using the steps above.
+
+## Docker (optional)
+
+Build and run the MCP server in a container:
+
+```bash
+docker build -t mcp-server-weather .
+docker run --rm -it mcp-server-weather
+```
+
+Note: MCP servers use stdio; most users run them locally for Claude Desktop. The container is mainly for consistency or CI.
+
+## Claude Desktop configuration (optional)
+
+Add this to your `claude_desktop_config.json` to register the server. Update the paths to match your machine.
+
+macOS example:
+
+```json
+{
+  "mcpServers": {
+    "weather": {
+      "command": "/Users/arjunsharma/Desktop/mcp-server-weather/.venv/bin/python",
+      "args": ["/Users/arjunsharma/Desktop/mcp-server-weather/server.py"]
+    }
+  }
+}
+```
 
 ## Notes and tips
 
