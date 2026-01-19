@@ -247,6 +247,34 @@ mcp dev server.py
 
 Then open http://localhost:5173 and test tools via the UI.
 
+## Test with MCP Inspector (npx)
+
+You can also run the Inspector directly via `npx` and point it at your local server:
+
+```bash
+cd /Users/arjunsharma/Desktop/mcp-server-weather
+source .venv/bin/activate
+npx @modelcontextprotocol/inspector python server.py
+```
+
+Then open the URL printed by the inspector (it includes an auth token), for example:
+
+```
+http://localhost:6274/?MCP_PROXY_AUTH_TOKEN=YOUR_TOKEN
+```
+
+If you open the base URL without the token, add it in the UI:
+
+- Configuration -> Proxy session token -> paste the token from the terminal
+
+In the Inspector UI, set:
+
+- Transport: `STDIO`
+- Command: `/Users/arjunsharma/Desktop/mcp-server-weather/.venv/bin/python`
+- Arguments: `/Users/arjunsharma/Desktop/mcp-server-weather/server.py`
+
+Then click Connect. Use the Tools tab to run `get_current_weather`, `get_forecast`, and `get_location`.
+
 ## Use Make or Just (optional)
 
 If you prefer shortcuts, you can use either `make` or `just`:
