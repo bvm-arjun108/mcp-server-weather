@@ -306,6 +306,27 @@ uv add "mcp[cli]" httpx
 
 Then create `server.py` and `test_tools.py` using the steps above.
 
+### uv run (dev + install)
+
+If you want to use `uv run` for development and Claude Desktop install:
+
+```bash
+cd /Users/arjunsharma/Desktop/mcp-server-weather
+uv run mcp dev server.py
+
+# Install into Claude Desktop
+uv run mcp install server.py --name "MCP Weather Server"
+```
+
+Note: `uv run` builds the project in editable mode. Because this project uses a flat layout, the `pyproject.toml` includes:
+
+```toml
+[tool.setuptools]
+py-modules = ["server", "test_tools"]
+```
+
+This prevents setuptools from failing with a \"multiple top-level modules\" error.
+
 ## Docker (optional)
 
 Build and run the MCP server in a container:
